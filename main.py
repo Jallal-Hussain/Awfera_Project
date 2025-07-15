@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from src.routers import data_handler
 from fastapi.responses import HTMLResponse
 from src.db import init_db
+from src.routers import auth
+from loguru import logger
 
 aap = FastAPI(
     title="CAG Project Api Chatwith Your PDF ",
@@ -15,7 +17,12 @@ aap.include_router(
     tags=["Data Handling and chat with your PDF"],
 )
 
+aap.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
+
 init_db()
+
+logger.add("logs/app.log", rotation="1 week", retention="4 weeks", level="INFO")
+logger.info("Starting CAG Project API application.")
 
 
 @aap.get("/", response_class=HTMLResponse, tags=["Root"])

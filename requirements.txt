@@ -6,3 +6,6 @@ google-genai
 sqlalchemy
 alembic
 mysql-connector-python
+python-jose
+passlib[bcrypt]
+loguru
