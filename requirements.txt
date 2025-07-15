@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pypdf
+google-genai
+sqlalchemy
+alembic
+mysql-connector-python

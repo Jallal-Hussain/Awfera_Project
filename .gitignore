@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# SQLite database
+app.db
+
+# Uploaded files
+uploads/
+
+# Python virtual environments
+env/
+venv/
+.venv/
+
+# Other common Python ignores
+*.egg-info/
+dist/
+build/
+*.log
