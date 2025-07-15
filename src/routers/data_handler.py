@@ -143,21 +143,21 @@ def update_pdf_data(uuid: uuid_pkg.UUID, file: UploadFile = File(...), db: Sessi
             status_code=404,
             detail=f"UUID {uuid_str} not found. Use POST to upload the PDF.",
         )
-    new_text = extract_text_from_pdf(file_path)
+        new_text = extract_text_from_pdf(file_path)
     if not new_text:
         logger.error(f"Update failed: Text extraction failed for user {current_user.username}, file {file.filename}")
-        raise HTTPException(
-            status_code=500, detail="Error extracting text from PDF."
-        )
+            raise HTTPException(
+                status_code=500, detail="Error extracting text from PDF."
+            )
     doc.extracted_text += "\n\n" + new_text
     doc.filename = file.filename
     doc.file_path = file_path
     db.commit()
     logger.info(f"User {current_user.username} updated PDF {file.filename} with UUID {uuid_str}")
-    return {
-        "message": f"PDF {file.filename} updated and text extracted successfully.",
-        "uuid": uuid_str,
-    }
+        return {
+            "message": f"PDF {file.filename} updated and text extracted successfully.",
+            "uuid": uuid_str,
+        }
 
 @router.get("/query/{uuid}", status_code=200)
 def query_data(
