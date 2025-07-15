@@ -4,20 +4,29 @@ from fastapi.responses import HTMLResponse
 from src.db import init_db
 from src.routers import auth
 from loguru import logger
+from fastapi.middleware.cors import CORSMiddleware
 
-aap = FastAPI(
+app = FastAPI(
     title="CAG Project Api Chatwith Your PDF ",
     description="API for uploading PDFs, querying content through LLMs, and managing data.",
     version="0.1.0",
 )
 
-aap.include_router(
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # or ["*"] for all origins (not recommended for prod)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(
     data_handler.router,
     prefix="/api/v1",
     tags=["Data Handling and chat with your PDF"],
 )
 
-aap.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
+app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 
 init_db()
 
@@ -25,7 +34,7 @@ logger.add("logs/app.log", rotation="1 week", retention="4 weeks", level="INFO")
 logger.info("Starting CAG Project API application.")
 
 
-@aap.get("/", response_class=HTMLResponse, tags=["Root"])
+@app.get("/", response_class=HTMLResponse, tags=["Root"])
 def read_root():
     """Provide a modern styled HTML Welcome page with a link to Swagger docs."""
     html_content = """
@@ -97,4 +106,4 @@ if __name__ == "__main__":
 
     # Run the FastAPI using Uvicorn
     # You can also test this using tools like curl, Postman, or Insomnia
-    uvicorn.run(aap, host="127.0.0.1", port=8001)
+    uvicorn.run(app, host="127.0.0.1", port=8001)

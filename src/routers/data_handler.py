@@ -66,6 +66,9 @@ def upload_pdf(uuid: uuid_pkg.UUID, file: UploadFile = File(...), db: Session = 
         if len(content) > MAX_FILE_SIZE:
             raise HTTPException(status_code=400, detail=f"File too large. Max size is {MAX_FILE_SIZE // (1024*1024)}MB.")
         buffer.write(content)
+    if os.path.getsize(file_path) == 0:
+        os.remove(file_path)
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
     try:
         reader = PdfReader(file_path)
         if len(reader.pages) > MAX_PDF_PAGES:
@@ -81,8 +84,6 @@ def upload_pdf(uuid: uuid_pkg.UUID, file: UploadFile = File(...), db: Session = 
             detail=f"UUID {uuid_str} already exists. Use PUT to update the PDF.",
         )
     try:
-        with open(file_path, "wb") as buffer:
-            buffer.write(file.file.read())
         extracted_text = extract_text_from_pdf(file_path)
         if not extracted_text:
             raise HTTPException(
