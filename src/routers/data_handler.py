@@ -203,8 +203,11 @@ def delete_data(uuid: uuid_pkg.UUID, db: Session = Depends(get_db), current_user
 
 @router.get("/list_uuids", status_code=200)
 def list_all_uuids(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    uuids = [doc.uuid for doc in db.query(Document).filter_by(user_id=current_user.id).all()]
-    return {"uuids": uuids}
+    pdfs = [
+        {"uuid": doc.uuid, "filename": doc.filename}
+        for doc in db.query(Document).filter_by(user_id=current_user.id).all()
+    ]
+    return {"pdfs": pdfs}
 
 @router.get("/download/{uuid}", response_class=FileResponse)
 def download_pdf(uuid: uuid_pkg.UUID, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):

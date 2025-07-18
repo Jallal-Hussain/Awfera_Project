@@ -13,8 +13,7 @@ export const fetchPdfsAPI = async () => {
   const response = await api.get(`${BASE_URL}/list_uuids`, {
     headers: getAuthHeaders(),
   });
-  // We only return the necessary data from the response
-  return response.data.uuids;
+  return response.data.pdfs;
 };
 
 export const uploadPdfAPI = async (uuid: string, file: File, onUploadProgress: (progress: number) => void) => {

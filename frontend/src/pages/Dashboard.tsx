@@ -31,8 +31,8 @@ export default function Dashboard() {
   // --- Data Fetching ---
   const fetchPdfs = async () => {
     try {
-      const uuids = await pdfService.fetchPdfsAPI();
-      setPdfs(uuids.map((uuid: string) => ({ uuid, filename: "" })));
+      const pdfs = await pdfService.fetchPdfsAPI();
+      setPdfs(pdfs);
     } catch (err) {
       setError(getErrorMessage(err));
     }
@@ -99,6 +99,8 @@ export default function Dashboard() {
     }
   };
 
+  const selectedPdf = pdfs.find((pdf) => pdf.uuid === selectedUuid);
+
   return (
     <div className="w-full max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-center">Your PDFs</h2>
@@ -122,7 +124,7 @@ export default function Dashboard() {
       {selectedUuid && (
         <form onSubmit={handleQuery} className="mb-4 flex flex-col gap-2">
           <label className="font-semibold">
-            Ask about PDF ({selectedUuid}):
+            Ask about PDF ({selectedPdf?.filename || selectedUuid}):
           </label>
           <input
             className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
