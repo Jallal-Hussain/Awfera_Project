@@ -11,7 +11,7 @@ export default function ThemeToggle() {
 
   return (
     <button
-      className="p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+      className="p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 cursor-pointer"
       onClick={() => setDark((d) => !d)}
     >
       {dark ? "🌙 Dark" : "☀️ Light"}

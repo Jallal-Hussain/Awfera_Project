@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { BASE_URL } from "../api/var";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -8,14 +9,13 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  // const BASE_URL = import.meta.env.BASE_URL;
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     try {
-      await api.post(`http://127.0.0.1:8001/api/v1/auth/register`, {
+      await api.post(`${BASE_URL}/auth/register`, {
         username,
         password,
       });
@@ -28,11 +28,11 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8">
-      <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+    <div className="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8 border border-[rgb(var(--color-border))]">
+      <h2 className="text-2xl font-bold text-center text-[rgb(var(--color-text))] mb-6">Register</h2>
       <form onSubmit={handleRegister} className="flex flex-col gap-4">
         <input
-          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent"
+          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
           type="text"
           placeholder="Username"
           value={username}
@@ -40,7 +40,7 @@ export default function Register() {
           required
         />
         <input
-          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent"
+          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
           type="password"
           placeholder="Password"
           value={password}
@@ -48,13 +48,13 @@ export default function Register() {
           required
         />
         <button
-          className="bg-[rgb(var(--color-primary))] text-white rounded p-2 font-semibold hover:opacity-90 transition"
+          className="bg-[rgb(var(--color-primary))] text-white dark:text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
           type="submit"
           disabled={loading}
         >
           {loading ? "Registering..." : "Register"}
         </button>
-        {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+        {error && <div className="text-red-500 dark:text-red-400 text-sm text-center">{error}</div>}
       </form>
     </div>
   );

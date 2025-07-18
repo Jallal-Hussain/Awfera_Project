@@ -21,7 +21,7 @@ function App() {
             }
           />
           <Route
-            path="/login"
+            path="/auth/login"
             element={
               <PublicRoute>
                 <Login />
@@ -29,7 +29,7 @@ function App() {
             }
           />
           <Route
-            path="/register"
+            path="/auth/register"
             element={
               <PublicRoute>
                 <Register />
@@ -38,7 +38,7 @@ function App() {
           />
 
           <Route
-            path="/dashboard"
+            path="/admin/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />

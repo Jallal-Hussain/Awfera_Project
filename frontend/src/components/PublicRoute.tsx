@@ -7,7 +7,7 @@ type Props = {
 export default function PublicRoute({ children }: Props) {
   const token = localStorage.getItem("token");
   if (token) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/admin/dashboard" replace />;
   }
   return <>{children}</>;
 }

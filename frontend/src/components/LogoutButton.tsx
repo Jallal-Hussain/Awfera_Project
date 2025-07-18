@@ -5,13 +5,13 @@ export default function LogoutButton() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/auth/login");
   };
 
   return (
     <button
       onClick={handleLogout}
-      className="p-2 rounded bg-red-500 text-white font-semibold hover:bg-red-600 transition"
+      className="p-2 rounded bg-red-700 text-white font-semibold hover:opacity-90 transition cursor-pointer"
     >
       Logout
     </button>

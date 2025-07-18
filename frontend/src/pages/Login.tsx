@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import api from "../api/axios";
+import { BASE_URL } from "../api/var";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -17,12 +18,12 @@ export default function Login() {
     setLoading(true);
     setError("");
     try {
-      const res = await api.post(`http://127.0.0.1:8001/api/v1/auth/login`, {
+      const res = await api.post(`${BASE_URL}/auth/login`, {
         username,
         password,
       });
       localStorage.setItem("token", res.data.access_token);
-      navigate("/dashboard");
+      navigate("/admin/dashboard");
     } catch (err: any) {
       setError(err.response?.data?.detail || "Login failed");
     } finally {
@@ -31,10 +32,10 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8">
-      <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+    <div className="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8 border border-[rgb(var(--color-border))]">
+      <h2 className="text-gray-800 text-2xl font-bold mb-4 text-center dark:text-white">Login</h2>
       {expired && (
-        <div className="text-red-500 text-sm text-center mb-2">
+        <div className="text-red-600 dark:text-red-500 text-sm text-center mb-2">
           Session expired, please log in again.
         </div>
       )}
@@ -56,7 +57,7 @@ export default function Login() {
           required
         />
         <button
-          className="bg-[rgb(var(--color-primary))] text-white rounded p-2 font-semibold hover:opacity-90 transition"
+          className="bg-[rgb(var(--color-primary))] text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
           type="submit"
           disabled={loading}
         >

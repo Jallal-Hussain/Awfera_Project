@@ -22,7 +22,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
       localStorage.removeItem("token");
-      window.location.href = "/login?expired=1";
+      window.location.href = "/auth/login?expired=1";
     }
     return Promise.reject(error);
   }
