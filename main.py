@@ -94,7 +94,7 @@ def read_root():
         <h1>🚀 Welcome to CAG Project API</h1>
         <p>An API for uploading PDFs, querying content through LLMs, and managing document data efficiently.</p>
         <a href="/docs">Go to Swagger Documentation</a>
-        <div class="footer">© 2025 CAG Project – All rights reserved.</div>
+        <div class="footer">© 2025 CAG Project - All rights reserved.</div>
     </body>
     </html>
     """

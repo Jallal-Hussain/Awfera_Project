@@ -8,7 +8,7 @@ export default function MainLayout() {
   return (
     <div className="min-h-screen flex flex-col bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))]">
       <header className="flex items-center justify-between p-4 border-b border-gray-700 dark:border-gray-400">
-        <Link to="/" className="text-2xl font-bold">
+        <Link to="/" className="text-lg md:text-xl font-bold">
           CAG Project - Awfera
         </Link>
         <nav className="flex gap-4 items-center">
