@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="isolate">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 -left-1/4 w-1/2 h-1/2 bg-[#00ABE4] dark:bg-[#008CBE] opacity-20 dark:opacity-30 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 -left-1/4 w-1/2 h-1/2 bg-[#000F14] dark:bg-[#008CBE] opacity-20 dark:opacity-30 rounded-full blur-3xl"></div>
       </div>
       <div className="container mx-auto px-6 py-20 md:py-24 lg:py-28 xl:py-32">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 xl:gap-16">
