@@ -12,7 +12,6 @@ export default function Login() {
   const location = useLocation();
   const expired = new URLSearchParams(location.search).get("expired");
 
-  // const API_BASE_URL = import.meta.env.API_BASE_URL;
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -32,39 +31,47 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8 border border-[rgb(var(--color-border))]">
-      <h2 className="text-gray-800 text-2xl font-bold mb-4 text-center dark:text-white">Login</h2>
+    <div className="w-full max-w-sm bg-background rounded-xl shadow-lg p-8 border border-border">
+      <h2 className="text-foreground text-2xl font-bold mb-6 text-center">
+        Login
+      </h2>
       {expired && (
-        <div className="text-red-600 dark:text-red-500 text-sm text-center mb-2">
+        <div className="text-destructive text-sm text-center mb-4">
           Session expired, please log in again.
         </div>
       )}
-      <form onSubmit={handleLogin} className="flex flex-col gap-4">
-        <input
-          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+      <form onSubmit={handleLogin} className="flex flex-col gap-5">
+        <div>
+          <input
+            className="w-full p-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <input
+            className="w-full p-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
         <button
-          className="bg-[rgb(var(--color-primary))] text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
+          className="w-full bg-[#00ABE4] hover:bg-[#00ABE4]/90 text-primary-foreground rounded-lg py-3 px-4 font-medium cursor-pointer transition-colors disabled:opacity-50"
           type="submit"
           disabled={loading}
         >
           {loading ? "Logging in..." : "Login"}
         </button>
         {error && (
-          <div className="text-red-500 text-sm text-center">{error}</div>
+          <div className="text-destructive text-sm text-center mt-2">
+            {error}
+          </div>
         )}
       </form>
     </div>

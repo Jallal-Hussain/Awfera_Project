@@ -1,29 +1,7 @@
 @import "tailwindcss";
 
-/* Modern theme variables for light/dark mode */
-@layer base {
-  :root {
-    --color-bg: 255 255 255;
-    --color-bg-dark: 24 24 27;
-    --color-primary: 59 130 246;
-    --color-primary-dark: 99 102 241;
-    --color-text: 17 24 39;
-    --color-text-dark: 229 231 235;
-    --color-border: 229 231 235;
-    --color-border-dark: 55 65 81;
-  }
-
-  html.dark {
-    --color-bg: var(--color-bg-dark);
-    --color-primary: var(--color-primary-dark);
-    --color-text: var(--color-text-dark);
-    --color-border: var(--color-border-dark);
-  }
-
-  body {
-    background-color: rgb(var(--color-bg));
-    color: rgb(var(--color-text));
-    transition-property: color, background-color;
-    transition-duration: 300ms;
-  }
+* {
+  font-family: "Prompt", sans-serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));

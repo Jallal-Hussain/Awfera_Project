@@ -1,42 +1,65 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+@import "tailwindcss";
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 233 241 250; /* #E9F1FA */
+    --foreground: 0 15 20; /* #000F14 */
+    --primary: 0 171 228; /* #00ABE4 */
+    --primary-foreground: 255 255 255; /* #FFFFFF */
+    --secondary: 0 140 190; /* #008CBE */
+    --secondary-foreground: 255 255 255;
+    --muted: 200 220 240; /* #C8DCF0 */
+    --muted-foreground: 100 125 150; /* #647D96 */
+    --border: 200 215 230; /* #C8D7E6 */
+    --input: 255 255 255; /* #FFFFFF */
+    --ring: 0 171 228; /* #00ABE4 */
+    --radius: 0.5rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dark {
+    /* Dark theme */
+    --background: 0 15 20; /* #000F14 */
+    --foreground: 233 241 250; /* #E9F1FA */
+    --primary: 0 171 228; /* #00ABE4 */
+    --primary-foreground: 255 255 255;
+    --secondary: 0 120 180; /* #0078B4 */
+    --secondary-foreground: 255 255 255;
+    --muted: 30 50 70; /* #1E3246 */
+    --muted-foreground: 150 180 210; /* #96B4D2 */
+    --border: 40 60 80; /* #283C50 */
+    --input: 15 30 45; /* #0F1E2D */
+    --ring: 0 171 228; /* #00ABE4 */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@layer base {
+  * {
+    border-color: rgb(var(--border));
   }
-}
 
-.card {
-  padding: 2em;
-}
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    transition: color 300ms ease, background-color 300ms ease,
+      border-color 300ms ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-.read-the-docs {
-  color: #888;
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: rgb(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--primary));
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(var(--primary), 0.8);
+  }
 }

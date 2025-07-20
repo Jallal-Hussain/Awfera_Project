@@ -28,33 +28,37 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8 border border-[rgb(var(--color-border))]">
-      <h2 className="text-2xl font-bold text-center text-[rgb(var(--color-text))] mb-6">Register</h2>
+    <div className="w-full max-w-sm bg-background/80 rounded-xl shadow-lg p-8 border border-border">
+      <h2 className="text-foreground text-2xl font-bold mb-6 text-center">
+        Register
+      </h2>
       <form onSubmit={handleRegister} className="flex flex-col gap-4">
         <input
-          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
+          className="w-full p-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           type="text"
           placeholder="Username"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
         <input
-          className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
+          className="w-full p-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           type="password"
           placeholder="Password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button
-          className="bg-[rgb(var(--color-primary))] text-white dark:text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
+          className="w-full bg-[#00ABE4] hover:bg-[#00ABE4]/90 text-primary-foreground rounded-lg py-3 px-4 font-medium cursor-pointer transition-colors disabled:opacity-50"
           type="submit"
           disabled={loading}
         >
           {loading ? "Registering..." : "Register"}
         </button>
-        {error && <div className="text-red-500 dark:text-red-400 text-sm text-center">{error}</div>}
+        {error && (
+          <div className="text-destructive text-sm text-center">{error}</div>
+        )}
       </form>
     </div>
   );
