@@ -27,6 +27,7 @@ type PDF = {
             <div className="flex gap-2">
             <button
                 onClick={() => onSelect(pdf.uuid)}
+                type="submit"
                 className="bg-blue-700 px-4 py-3 hover:bg-blue-600 text-[#FFFFFF] shadow-lg hover:shadow-blue-900 rounded-full md:rounded-lg font-medium flex items-center transition group cursor-pointer"
               >
                 <i className="bx bx-folder-down-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
@@ -34,6 +35,7 @@ type PDF = {
               </button>
               <button
                 onClick={() => onDownload(pdf.uuid)}
+                type="submit"
                 className="px-4 py-3 bg-[#00ABE4] hover:bg-[#00ABE4]/90 text-[#FFFFFF] shadow-lg hover:shadow-cyan-600 rounded-full md:rounded-lg font-medium flex items-center transition group cursor-pointer"
               >
                 <i className="bx bx-folder-down-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
@@ -41,6 +43,7 @@ type PDF = {
               </button>
               <button
                 onClick={() => onDelete(pdf.uuid)}
+                type="submit"
                 className="bg-red-700 px-4 py-3 hover:bg-red-600 text-[#FFFFFF] shadow-lg hover:shadow-red-900 rounded-full md:rounded-lg font-medium flex items-center transition group cursor-pointer"
               >
                 <i className="bx bx-folder-down-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>

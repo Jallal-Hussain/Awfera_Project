@@ -38,6 +38,7 @@ export default function FileUpload({
           ref={fileInputRef}
           type="file"
           id="file"
+          placeholder="Upload your PDF"
           accept="application/pdf"
           onChange={handleFileChange}
           className="flex-1 w-full p-3 rounded-lg border-2 border-[#00ABE4] bg-[#E9F1FA] text-[#000F14]/80 cursor-pointer hover:text-[#000F14]/60 hover:border-[#008CBE]"
