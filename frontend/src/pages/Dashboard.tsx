@@ -102,8 +102,8 @@ export default function Dashboard() {
   const selectedPdf = pdfs.find((pdf) => pdf.uuid === selectedUuid);
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center">Your PDFs</h2>
+    <div className="w-full max-w-2xl mx-auto px-6 py-15 md:py-20 lg:py-24 xl:py-28">
+      <h2 className="text-2xl lg:text-4xl font-bold mb-4 lg:mb-12 text-center">Your PDFs</h2>
 
       <FileUpload
         onUpload={handleUpload}
@@ -111,8 +111,8 @@ export default function Dashboard() {
         progress={progress}
       />
 
-      {success && <div className="text-green-600 mb-2">{success}</div>}
-      {error && <div className="text-red-500 mb-2">{error}</div>}
+      {success && <div className="text-green-600 dark:text-green-500 mb-2">{success}</div>}
+      {error && <div className="text-red-600 dark:text-red-500 mb-2">{error}</div>}
 
       <PdfList
         pdfs={pdfs}

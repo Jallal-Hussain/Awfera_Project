@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 
 type FileUploadProps = {
@@ -7,7 +6,11 @@ type FileUploadProps = {
   progress: number;
 };
 
-export default function FileUpload({ onUpload, uploading, progress }: FileUploadProps) {
+export default function FileUpload({
+  onUpload,
+  uploading,
+  progress,
+}: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,26 +30,33 @@ export default function FileUpload({ onUpload, uploading, progress }: FileUpload
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 mb-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col md:flex-row gap-4 mb-6"
+      >
         <input
           ref={fileInputRef}
           type="file"
+          id="file"
           accept="application/pdf"
           onChange={handleFileChange}
-          className="flex-1 p-2 rounded border dark:border-purple-400 bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
+          className="flex-1 w-full p-3 rounded-lg border-2 border-[#00ABE4] bg-[#E9F1FA] text-[#000F14]/80 cursor-pointer hover:text-[#000F14]/60 hover:border-[#008CBE]"
         />
         <button
           type="submit"
-          className="bg-[rgb(var(--color-primary))] text-white dark:text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
+          className="px-4 py-3 lg:px-5 lg:py-3.5 bg-[#00ABE4] hover:bg-[#00ABE4]/80 text-[#FFFFFF] shadow-lg hover:shadow-[#00ABE4]/20 rounded-lg font-medium flex items-center transition group cursor-pointer"
           disabled={uploading || !file}
         >
-          {uploading ? `Uploading... (${progress}%)` : "Upload PDF"}
+          <i className="bx bx-folder-up-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
+          <span>
+            {uploading ? `Uploading... (${progress}%)` : "Upload PDF"}
+          </span>
         </button>
       </form>
       {progress > 0 && uploading && (
-        <div className="w-full bg-gray-200 rounded h-2 mb-4">
+        <div className="w-full bg-[#E9F1FA] rounded h-2 mb-4">
           <div
-            className="bg-[rgb(var(--color-primary))] h-2 rounded"
+            className="bg-[#00ABE4] h-2 rounded"
             style={{ width: `${progress}%` }}
           />
         </div>

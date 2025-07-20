@@ -39,7 +39,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex fex-wrap gap-3 lg:gap-4">
-              <button className="px-6 py-3 lg:px-7 lg:py-3 5 bg-[#00ABE4] hover:bg-[#00ABE4]/80 text-[#FFFFFF] shadow-lg hover:shadow-[#00ABE4]/20 rounded-lg font-medium flex items-center transition group cursor-pointer">
+              <button className="px-6 py-3 lg:px-7 lg:py-3.5 bg-[#00ABE4] hover:bg-[#00ABE4]/80 text-[#FFFFFF] shadow-lg hover:shadow-[#00ABE4]/20 rounded-lg font-medium flex items-center transition group cursor-pointer">
                 <Link to={"auth/login"}>
                   <i className="bx bx-code-alt mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
                   <span>Explore the Project</span>

@@ -21,27 +21,30 @@ type PDF = {
         {pdfs.map((pdf) => (
           <li
             key={pdf.uuid}
-            className="flex items-center justify-between border-b border-gray-700 py-2 dark:border-purple-400"
+            className="flex items-center justify-between border-b border-[#283C50] py-2 dark:border-[#C8D7E6]"
           >
             <span className="truncate">{`${pdf.filename}`}</span>
             <div className="flex gap-2">
+            <button
+                onClick={() => onSelect(pdf.uuid)}
+                className="bg-blue-700 px-4 py-3 hover:bg-blue-600 text-[#FFFFFF] shadow-lg hover:shadow-blue-900 rounded-full md:rounded-lg font-medium flex items-center transition group cursor-pointer"
+              >
+                <i className="bx bx-folder-down-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
+                <span className="hidden md:block">Query</span>
+              </button>
               <button
                 onClick={() => onDownload(pdf.uuid)}
-                className="bg-[rgb(var(--color-primary))] text-white dark:text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
+                className="px-4 py-3 bg-[#00ABE4] hover:bg-[#00ABE4]/90 text-[#FFFFFF] shadow-lg hover:shadow-cyan-600 rounded-full md:rounded-lg font-medium flex items-center transition group cursor-pointer"
               >
-                Download
+                <i className="bx bx-folder-down-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
+                <span className="hidden md:block">Download</span>
               </button>
               <button
                 onClick={() => onDelete(pdf.uuid)}
-                className="bg-red-700 text-white dark:text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
+                className="bg-red-700 px-4 py-3 hover:bg-red-600 text-[#FFFFFF] shadow-lg hover:shadow-red-900 rounded-full md:rounded-lg font-medium flex items-center transition group cursor-pointer"
               >
-                Delete
-              </button>
-              <button
-                onClick={() => onSelect(pdf.uuid)}
-                className="bg-blue-700 text-white dark:text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
-              >
-                Query
+                <i className="bx bx-folder-down-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
+                <span className="hidden md:block">Delete</span>
               </button>
             </div>
           </li>
