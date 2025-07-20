@@ -6,7 +6,7 @@ export default function Home() {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 -left-1/4 w-1/2 h-1/2 bg-[#000F14] dark:bg-[#008CBE] opacity-20 dark:opacity-30 rounded-full blur-3xl"></div>
       </div>
-      <div className="container mx-auto px-6 py-20 md:py-24 lg:py-28 xl:py-32">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-15 md:py-20 lg:py-24 xl:py-28">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 xl:gap-16">
           <div className="flex-1 space-y-6 lg:space-y-7">
             <div className="space-y-4 lg:space-y-5">
@@ -19,19 +19,19 @@ export default function Home() {
                   Awfera
                 </h2>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-[#000F14] dark:text-[#E9F1FA]">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-[#000F14] dark:text-[#E9F1FA]">
                 <span className="block mb-1">Welcome</span>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00ABE4] to-[#008CBE]">
                   to the CAG Project
                 </span>
               </h1>
-              <p className="text-base lg:text-lg text-[#647D96] font-light max-w-2xl">
+              <p className="text-base lg:text-medium text-[#647D96] font-light max-w-2xl">
                 Welcome to our Python-powered solution designed for the modern
                 age automation and intelligent interaction. Built using
                 cutting-edge technoogies like FastAPI, LLMs, and modern frontend
                 technologies and frameworks.
               </p>
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-3 items-baseline md:items-center">
                 <div className="h-[4px] rounded-full bg-[#008CBE] dark:bg-[#96B4D2] w-12"></div>
                 <p className="uppercase text-xs tracking-widest font-medium text-[#647D96] dark:text-[#96B4D2]">
                   enables seamless PDF document analysis
