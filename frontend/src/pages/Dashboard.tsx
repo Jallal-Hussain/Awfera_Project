@@ -102,8 +102,10 @@ export default function Dashboard() {
   const selectedPdf = pdfs.find((pdf) => pdf.uuid === selectedUuid);
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-6 py-15 md:py-20 lg:py-24 xl:py-28">
-      <h2 className="text-2xl lg:text-4xl font-bold mb-4 lg:mb-12 text-center">Your PDFs</h2>
+    <div className="w-full min-h-screen max-w-4xl md:max-w-5xl mx-auto px-6 py-6 md:py-10">
+      <h2 className="text-2xl lg:text-4xl font-bold mb-4 lg:mb-12 text-center">
+        Your PDFs
+      </h2>
 
       <FileUpload
         onUpload={handleUpload}
@@ -111,8 +113,12 @@ export default function Dashboard() {
         progress={progress}
       />
 
-      {success && <div className="text-green-600 dark:text-green-500 mb-2">{success}</div>}
-      {error && <div className="text-red-600 dark:text-red-500 mb-2">{error}</div>}
+      {success && (
+        <div className="text-green-600 dark:text-green-500 mb-2">{success}</div>
+      )}
+      {error && (
+        <div className="text-red-600 dark:text-red-500 mb-2">{error}</div>
+      )}
 
       <PdfList
         pdfs={pdfs}
@@ -122,25 +128,36 @@ export default function Dashboard() {
       />
 
       {selectedUuid && (
-        <form onSubmit={handleQuery} className="mb-4 flex flex-col gap-2">
-          <label className="font-semibold">
-            Ask about PDF ({selectedPdf?.filename || selectedUuid}):
-          </label>
-          <input
-            className="p-2 rounded border border-[rgb(var(--color-border))] bg-transparent text-[rgb(var(--color-text))] placeholder-gray-500 dark:placeholder-gray-400"
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type your question..."
-            disabled={isQuerying}
-            required
-          />
+        <form
+          onSubmit={handleQuery}
+          className="flex flex-col items-center md:justify-between md:items-baseline-last md:flex-row gap-4 mt-10 mb-6"
+        >
+          <div className="md:w-full flex flex-col justify-between gap-2">
+            <label className="font-medium self-start">
+              Ask about PDF ({selectedPdf?.filename || selectedUuid}):
+            </label>
+            <input
+              className="p-3 rounded-lg border border-foreground bg-background text-foreground placeholder:text-muted-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              type="text"
+              id="query"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Type your question..."
+              disabled={isQuerying}
+              required
+            />
+          </div>
           <button
-            className="bg-[rgb(var(--color-primary))] text-white rounded p-2 font-semibold hover:opacity-90 transition cursor-pointer"
+            className="px-4 py-3 lg:px-5 lg:py-3.5 bg-primary hover:bg-primary/80 text-white shadow-lg hover:shadow-primary/20 rounded-lg font-medium flex items-center transition group cursor-pointer"
             type="submit"
             disabled={isQuerying}
           >
-            {isQuerying ? "LLM Thinking..." : "Ask LLM"}
+            {/* {isQuerying ? "LLM Thinking..." : "Ask LLM"} */}
+            {isQuerying ? (
+              <i className="bx bx-loader-dots bx-sm ml-2 bx-spin"></i>
+            ) : (
+              <i className="bx bx-arrow-right-stroke bx-sm ml-2 bx-wiggle"></i>
+            )}
           </button>
         </form>
       )}
@@ -154,7 +171,7 @@ export default function Dashboard() {
       )}
 
       {!isQuerying && llmResult && (
-        <div className="mb-4 w-full text-white bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg p-8 border border-[rgb(var(--color-border))]">
+        <div className="mb-4 w-full text-background/95 bg-muted-secondary/90 rounded-xl shadow-lg p-8 border border-primary">
           <div className="font-semibold mb-2">LLM Response:</div>
           <div className="whitespace-pre-line">{llmResult}</div>
         </div>

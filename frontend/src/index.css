@@ -5,3 +5,17 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: #E9F1FA;
+  --color-foreground: #000F14;
+  --color-primary: #00ABE4;
+  --color-secondary: #008CBE;
+  --color-muted: #C8DCF0;
+  --color-muted-foreground: #647D96;
+  --color-muted-secondary: #1E3246;
+  --color-muted-secondary-foreground: #96B4D2;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-info: #00ABE4;
+}

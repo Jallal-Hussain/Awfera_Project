@@ -32,7 +32,7 @@ export default function FileUpload({
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col md:flex-row gap-4 mb-6"
+        className="flex flex-col items-center justify-center md:flex-row gap-4 mb-6"
       >
         <input
           ref={fileInputRef}
@@ -41,23 +41,20 @@ export default function FileUpload({
           placeholder="Upload your PDF"
           accept="application/pdf"
           onChange={handleFileChange}
-          className="flex-1 w-full p-3 rounded-lg border-2 border-[#00ABE4] bg-[#E9F1FA] text-[#000F14]/80 cursor-pointer hover:text-[#000F14]/60 hover:border-[#008CBE]"
+          className="flex-1 w-full p-3 rounded-lg border-2 border-primary bg-background/95 text-foreground/80 cursor-pointer hover:text-foreground/60 hover:border-secondary transition-colors"
         />
         <button
           type="submit"
-          className="px-4 py-3 lg:px-5 lg:py-3.5 bg-[#00ABE4] hover:bg-[#00ABE4]/80 text-[#FFFFFF] shadow-lg hover:shadow-[#00ABE4]/20 rounded-lg font-medium flex items-center transition group cursor-pointer"
+          className="px-4 py-3 lg:px-5 lg:py-3.5 bg-primary hover:bg-primary/80 text-white shadow-lg hover:shadow-primary/20 rounded-lg font-medium flex items-center transition group cursor-pointer"
           disabled={uploading || !file}
         >
-          <i className="bx bx-folder-up-arrow mr-2 lg:mr-3 text-lg lg:text-xl group-hover:rotate-12 transition-transform"></i>
-          <span>
-            {uploading ? `Uploading... (${progress}%)` : "Upload PDF"}
-          </span>
+          {uploading ? `Uploading... (${progress}%)` : "Upload PDF"}
         </button>
       </form>
       {progress > 0 && uploading && (
-        <div className="w-full bg-[#E9F1FA] rounded h-2 mb-4">
+        <div className="w-full bg-background rounded h-2 mb-4">
           <div
-            className="bg-[#00ABE4] h-2 rounded"
+            className="bg-primary h-2 rounded"
             style={{ width: `${progress}%` }}
           />
         </div>

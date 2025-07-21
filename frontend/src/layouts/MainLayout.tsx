@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 export default function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#E9F1FA] dark:bg-[#000F14] dark:text-[#E9F1FA] transition-colors duration-300 isolate relative">
+    <div className="min-h-screen flex flex-col justify-between bg-[#E9F1FA] dark:bg-[#000F14] dark:text-[#E9F1FA] transition-colors duration-300 isolate relative">
       <div className="absolute inset-0 -z-10">
         <div
           className="absolute inset-0 opacity-30 dark:hidden"

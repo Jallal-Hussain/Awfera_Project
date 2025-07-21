@@ -26,7 +26,7 @@ export default function ThemeToggle() {
 
   return (
     <button
-      className="flex justify-center items-center w-9 h-9 lg:w-10 lg:h-10 p-2 rounded-full bg-[#000F14] dark:bg-[#D1E4FA] text-[#E9F1FA] dark:text-[#000F14] shadow-lg hover:bg-[#000F14]/85 hover:dark:bg-[#D1E4FA]/80 transition-colors cursor-pointer"
+      className="flex justify-center items-center w-9 h-9 lg:w-10 lg:h-10 p-2 rounded-full bg-foreground dark:bg-background text-background dark:text-foreground shadow-lg hover:bg-foreground/90 hover:dark:bg-background/80 transition-colors cursor-pointer"
       onClick={toggleDarkMode}
     >
       <i
