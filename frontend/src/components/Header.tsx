@@ -1,17 +1,48 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
-  const token = localStorage.getItem("token");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check authentication state on component mount and when localStorage changes
+  const checkAuthState = () => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  };
+
+  useEffect(() => {
+    // Initial check
+    checkAuthState();
+
+    // Listen for storage changes (when token is added/removed)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "token") {
+        checkAuthState();
+      }
+    };
+
+    // Listen for custom events (for programmatic token changes)
+    const handleAuthChange = () => {
+      checkAuthState();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("authStateChanged", handleAuthChange);
+
+    // Cleanup listeners
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("authStateChanged", handleAuthChange);
+    };
+  }, []);
+
   return (
     <>
       {/* Enhanced Header */}
-      <header className="sticky top-0 z-50 bg-background dark:bg-foreground backdrop-blur-sm flex items-center justify-between px-4 py-2">
-        <Link
-          to="/"
-          className="hover:opacity-90 transition-opacity"
-        >
+      <header className="sticky top-0 z-50 backdrop-blur-sm flex items-center justify-between px-4 py-2">
+        <Link to="/" className="hover:opacity-90 transition-opacity">
           <img
             src="/avatar.png"
             alt="avatar"
@@ -19,7 +50,7 @@ const Header = () => {
           />
         </Link>
         <nav className="flex gap-1 md:gap-4 lg:gap-6 items-center">
-          {!token && (
+          {!isAuthenticated && (
             <>
               <Link
                 to="/auth/register"
@@ -35,7 +66,7 @@ const Header = () => {
               </Link>
             </>
           )}
-          {token && <LogoutButton />}
+          {isAuthenticated && <LogoutButton onLogout={checkAuthState} />}
           <div className="ml-2">
             <ThemeToggle />
           </div>

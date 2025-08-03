@@ -11,7 +11,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const expired = new URLSearchParams(location.search).get("expired");
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -24,6 +24,10 @@ export default function Login() {
         password,
       });
       localStorage.setItem("token", res.data.access_token);
+
+      // Notify other components about auth state change
+      window.dispatchEvent(new CustomEvent("authStateChanged"));
+
       navigate("/admin/dashboard");
     } catch (err: any) {
       setError(err.response?.data?.detail || "Login failed");

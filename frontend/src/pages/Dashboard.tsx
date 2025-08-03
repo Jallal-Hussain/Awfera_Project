@@ -4,6 +4,7 @@ import { isAxiosError } from "axios";
 import FileUpload from "../components/FileUpload";
 import PdfList from "../components/PdfList";
 import * as pdfService from "../api/pdfService"; // Import all service functions
+import { Loader2Icon, Send } from "lucide-react";
 
 type PDF = {
   uuid: string;
@@ -152,11 +153,10 @@ export default function Dashboard() {
             type="submit"
             disabled={isQuerying}
           >
-            {/* {isQuerying ? "LLM Thinking..." : "Ask LLM"} */}
             {isQuerying ? (
-              <i className="bx bx-loader-dots bx-sm ml-2 bx-spin"></i>
+              <Loader2Icon className="animate-spin transition-transform h-5 w-5 text-white" />
             ) : (
-              <i className="bx bx-arrow-right-stroke bx-sm ml-2 bx-wiggle"></i>
+              <Send className="h-5 w-5 text-white" />
             )}
           </button>
         </form>
