@@ -1,6 +1,4 @@
-// src/api/pdfService.ts
-
-import api from "./axios"; // Your existing configured axios instance
+import api from "./axios";
 import { BASE_URL } from "./var";
 
 const getAuthHeaders = () => {
@@ -12,6 +10,7 @@ const getAuthHeaders = () => {
 export const fetchPdfsAPI = async () => {
   const response = await api.get(`${BASE_URL}/list_uuids`, {
     headers: getAuthHeaders(),
+    withCredentials: true,
   });
   return response.data.pdfs;
 };
@@ -62,4 +61,89 @@ export const queryLlmAPI = async (uuid: string, query: string) => {
     params: { query },
   });
   return response.data.llm_response;
+};
+
+// ===== NEW CHAT FUNCTIONS =====
+
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+}
+
+export interface Conversation {
+  uuid: string;
+  title: string;
+  created_at: string;
+  updated_at: string;
+  messages: ChatMessage[];
+}
+
+export interface ConversationListItem {
+  uuid: string;
+  title: string;
+  document_filename: string;
+  document_uuid: string;
+  created_at: string;
+  updated_at: string;
+  message_count: number;
+}
+
+export const startConversationAPI = async (documentUuid: string, message: string): Promise<Conversation> => {
+  const response = await api.post(`${BASE_URL}/chat/start/${documentUuid}`, 
+    { message },
+    { headers: getAuthHeaders() }
+  );
+  return response.data;
+};
+
+export const continueConversationAPI = async (conversationUuid: string, message: string): Promise<ChatMessage> => {
+  const response = await api.post(`${BASE_URL}/chat/continue/${conversationUuid}`, 
+    { message },
+    { headers: getAuthHeaders() }
+  );
+  return response.data;
+};
+
+export const getConversationsAPI = async (): Promise<ConversationListItem[]> => {
+  const response = await api.get(`${BASE_URL}/chat/conversations`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
+};
+
+export const getConversationAPI = async (conversationUuid: string): Promise<Conversation> => {
+  const response = await api.get(`${BASE_URL}/chat/conversation/${conversationUuid}`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
+};
+
+export const deleteConversationAPI = async (conversationUuid: string) => {
+  return api.delete(`${BASE_URL}/chat/conversation/${conversationUuid}`, {
+    headers: getAuthHeaders(),
+  });
+};
+
+// ===== SUMMARIZATION FUNCTIONS =====
+
+export interface DocumentSummary {
+  uuid: string;
+  filename: string;
+  summary: string;
+  summary_generated_at: string | null;
+}
+
+export const generateSummaryAPI = async (documentUuid: string): Promise<DocumentSummary> => {
+  const response = await api.post(`${BASE_URL}/summarize/${documentUuid}`, {}, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
+};
+
+export const getSummaryAPI = async (documentUuid: string): Promise<DocumentSummary> => {
+  const response = await api.get(`${BASE_URL}/summary/${documentUuid}`, {
+    headers: getAuthHeaders(),
+  });
+  return response.data;
 };

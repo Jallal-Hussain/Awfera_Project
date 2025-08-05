@@ -19,7 +19,7 @@ export default function Register() {
         username,
         password,
       });
-      navigate("/login");
+      navigate("/auth/login");
     } catch (err: any) {
       setError(err.response?.data?.detail || "Registration failed");
     } finally {
