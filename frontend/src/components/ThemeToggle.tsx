@@ -30,7 +30,7 @@ export default function ThemeToggle() {
       onClick={toggleDarkMode}
     >
       <i
-        className={`bx bx-${darkMode ? "moon" : "sun"} text-lg lg:text-xl`}
+        className={`bx bx-${darkMode ? "sun" : "moon"} text-lg lg:text-xl`}
       ></i>
     </button>
   );
