@@ -11,7 +11,7 @@ interface ConversationListProps {
     documentUuid: string,
     documentFilename: string
   ) => void;
-  refreshTrigger?: number; // To trigger refresh from parent
+  refreshTrigger?: number;
 }
 
 export default function ConversationList({
@@ -90,16 +90,16 @@ export default function ConversationList({
 
   if (loading) {
     return (
-      <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6">
+      <div className="bg-white dark:bg-muted-secondary/30 rounded-lg shadow-lg p-6">
         <div className="animate-pulse space-y-4">
-          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+          <div className="h-6 bg-muted-secondary/30 dark:bg-muted/30 rounded w-1/2"></div>
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+              className="border border-muted-secondary/30 dark:border-muted/30 rounded-lg p-4"
             >
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+              <div className="h-4 bg-muted-secondary/30 dark:bg-muted/30 rounded w-3/4 mb-2"></div>
+              <div className="h-3 bg-muted-secondary/30 dark:bg-muted/30 rounded w-1/2"></div>
             </div>
           ))}
         </div>
@@ -108,16 +108,16 @@ export default function ConversationList({
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6">
+    <div className="bg-white dark:bg-muted-secondary rounded-lg shadow-lg p-6">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+        <h3 className="text-xl font-semibold text-muted-secondary dark:text-white flex items-center">
           <i className="bx bx-conversation text-primary mr-2"></i>
           Recent Conversations
         </h3>
         <button
           onClick={fetchConversations}
           disabled={loading}
-          className="text-gray-600 dark:text-gray-400 hover:text-primary disabled:opacity-50"
+          className="text-muted-secondary/80 dark:text-muted/60 hover:text-primary disabled:opacity-50"
         >
           <i className="bx bx-refresh text-lg"></i>
         </button>
@@ -134,11 +134,11 @@ export default function ConversationList({
 
       {conversations.length === 0 && !loading && !error && (
         <div className="text-center py-8">
-          <i className="bx bx-conversation text-gray-400 text-6xl mb-4"></i>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">
+          <i className="bx bx-conversation text-muted/60 text-6xl mb-4"></i>
+          <p className="text-muted-secondary/80 dark:text-muted/60 mb-2">
             No conversations yet
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">
+          <p className="text-sm text-muted/70 dark:text-muted/70">
             Start chatting with your documents to see conversations here
           </p>
         </div>
@@ -155,18 +155,18 @@ export default function ConversationList({
                 conversation.document_filename
               )
             }
-            className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors group"
+            className="border border-muted-secondary/20 dark:border-muted/40 rounded-lg p-4 hover:bg-muted/30 dark:hover:bg-muted/10 cursor-pointer transition-colors group"
           >
             <div className="flex items-start justify-between">
               <div className="flex-1 min-w-0">
-                <h4 className="font-medium text-gray-900 dark:text-white mb-1">
+                <h4 className="font-medium text-muted-secondary dark:text-white mb-1">
                   {truncateTitle(conversation.title)}
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 flex items-center">
+                <p className="text-sm text-muted-secondary/70 dark:text-muted/80 mb-2 flex items-center">
                   <i className="bx bx-file text-primary mr-1"></i>
                   {truncateTitle(conversation.document_filename, 40)}
                 </p>
-                <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                <div className="flex items-center justify-between text-xs text-muted-secondary/70 dark:text-muted/50">
                   <span className="flex items-center">
                     <i className="bx bx-message-dots mr-1"></i>
                     {conversation.message_count} messages
@@ -178,7 +178,7 @@ export default function ConversationList({
               <button
                 onClick={(e) => handleDeleteConversation(conversation.uuid, e)}
                 disabled={deletingId === conversation.uuid}
-                className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 p-1 transition-all disabled:opacity-50"
+                className="opacity-0 group-hover:opacity-100 text-muted/40 hover:text-red-500 p-1 transition-all disabled:opacity-50"
                 title="Delete conversation"
               >
                 {deletingId === conversation.uuid ? (

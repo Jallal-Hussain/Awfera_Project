@@ -107,14 +107,14 @@ export default function ChatInterface({
   };
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+    <div className="flex flex-col h-full bg-white dark:bg-muted-secondary rounded-lg shadow-lg">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-4 border-b border-muted-secondary/20 dark:border-muted/20">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-muted-secondary dark:text-white">
             {conversation?.title || "New Chat"}
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-muted-secondary/50 dark:text-muted/50">
             {documentFilename}
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function ChatInterface({
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && !conversationUuid && (
-          <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+          <div className="text-center text-muted-secondary/50 dark:text-muted/50 py-8">
             <i className="bx bx-message-dots text-4xl mb-4"></i>
             <p>Start a conversation about this document!</p>
             <p className="text-sm mt-2">
@@ -146,15 +146,15 @@ export default function ChatInterface({
               className={`max-w-3xl px-4 py-2 rounded-lg ${
                 message.role === "user"
                   ? "bg-primary text-white"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                  : "bg-muted/50 dark:bg-muted/10 text-muted-forground dark:text-white"
               }`}
             >
               <div className="whitespace-pre-wrap">{message.content}</div>
               <div
                 className={`text-xs mt-1 ${
                   message.role === "user"
-                    ? "text-blue-100"
-                    : "text-gray-500 dark:text-gray-400"
+                    ? "text-muted"
+                    : "text-muted-secondary/50 dark:text-muted/50"
                 }`}
               >
                 {formatTimestamp(message.timestamp)}
@@ -166,10 +166,10 @@ export default function ChatInterface({
         {/* Loading indicator */}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg">
+            <div className="bg-muted/30 dark:bg-muted/10 px-4 py-2 rounded-lg">
               <div className="flex items-center space-x-2">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-                <span className="text-gray-600 dark:text-gray-300">
+                <span className="text-muted-secondary/50 dark:text-muted/50">
                   Thinking...
                 </span>
               </div>
@@ -188,14 +188,14 @@ export default function ChatInterface({
       )}
 
       {/* Input form */}
-      <div className="border-t border-gray-200 dark:border-gray-700 p-4">
+      <div className="border-t border-muted-secondary/20 dark:border-muted/20 p-4">
         <form onSubmit={handleSendMessage} className="flex space-x-3">
           <input
             type="text"
             value={currentMessage}
             onChange={(e) => setCurrentMessage(e.target.value)}
             placeholder="Ask a question about this document..."
-            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="flex-1 px-4 py-2 border border-muted-secondary/20 dark:border-muted/20 rounded-lg bg-white dark:bg-muted/10 text-muted-secondary dark:text-white placeholder-muted-secondary/50 dark:placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             disabled={isLoading}
           />
           <button

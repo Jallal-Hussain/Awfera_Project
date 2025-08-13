@@ -39,18 +39,18 @@ export default function PdfList({
       {pdfs.map((pdf) => (
         <div
           key={pdf.uuid}
-          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-4 border border-muted dark:border-muted-secondary rounded-lg hover:bg-muted/20 dark:hover:bg-muted-secondary/20 transition-colors"
         >
           {/* Document Info */}
           <div className="flex items-center flex-1 min-w-0">
-            <div className="flex-shrink-0 w-10 h-10 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center mr-4">
-              <i className="bx bx-file-pdf text-red-600 dark:text-red-400 text-xl"></i>
+            <div className="flex-shrink-0 w-10 h-10 bg-muted dark:bg-muted/20 rounded-lg flex items-center justify-center mr-4">
+              <i className="bx bx-folder text-muted-forground dark:text-muted-secondary-forground text-xl"></i>
             </div>
             <div className="min-w-0 flex-1">
-              <h4 className="font-medium text-gray-900 dark:text-white truncate">
+              <h4 className="font-medium text-muted-secondary dark:text-white truncate">
                 {pdf.filename}
               </h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+              <p className="text-sm text-muted-secondary/50 dark:text-muted/50 truncate">
                 UUID: {pdf.uuid}
               </p>
             </div>
