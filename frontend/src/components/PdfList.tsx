@@ -7,7 +7,7 @@ type PdfListProps = {
   pdfs: PDF[];
   onDownload: (uuid: string) => void;
   onDelete: (uuid: string) => void;
-  onSelect: (uuid: string) => void;
+  onSelect?: (uuid: string) => void;
   onChat?: (uuid: string) => void;
   onSummarize?: (uuid: string) => void;
 };
@@ -16,7 +16,7 @@ export default function PdfList({
   pdfs,
   onDownload,
   onDelete,
-  onSelect,
+  // onSelect,
   onChat,
   onSummarize,
 }: PdfListProps) {
