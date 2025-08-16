@@ -6,7 +6,7 @@ export default function Home() {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 -left-1/4 w-1/2 h-1/2 bg-foreground dark:bg-primary opacity-20 dark:opacity-30 rounded-full blur-3xl"></div>
       </div>
-      <div className="container mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-15 md:py-20 lg:py-24 xl:py-28">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-10 md:py-15 lg:py-10">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 xl:gap-16">
           <div className="flex-1 space-y-6 lg:space-y-7">
             <div className="space-y-4 lg:space-y-5">
